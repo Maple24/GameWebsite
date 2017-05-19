@@ -110,9 +110,6 @@ namespace WebApplication2.Controllers
             }
             return View();
         }
-        public FileStreamResult Download(string path,string filename) {
-            return File(new FileStream(path, FileMode.Open), "text/plain",filename);
-        }
     }
 
     }
