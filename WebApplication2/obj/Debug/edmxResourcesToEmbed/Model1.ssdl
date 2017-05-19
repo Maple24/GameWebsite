@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameWebSiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="admin_pwd" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="news_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="comment_content" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="delgame_record">
+    <Key>
+      <PropertyRef Name="dgr_id" />
+    </Key>
+    <Property Name="dgr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="game_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="delnews_record">
+    <Key>
+      <PropertyRef Name="dnr_id" />
+    </Key>
+    <Property Name="dnr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="news_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="deluser_record">
+    <Key>
+      <PropertyRef Name="dur_id" />
+    </Key>
+    <Property Name="dur_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="admin_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="game">
+    <Key>
+      <PropertyRef Name="game_name" />
+    </Key>
+    <Property Name="game_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="game_content" Type="text" Nullable="false" />
+    <Property Name="game_type" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="game_link" Type="varchar(max)" Nullable="false" />
+    <Property Name="game_pic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="game_intro" Type="text" Nullable="false" />
+    <Property Name="game_pic_show" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="news_title" />
+    </Key>
+    <Property Name="news_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="news_content" Type="text" Nullable="false" />
+    <Property Name="news_intro" Type="text" Nullable="false" />
+    <Property Name="news_pic" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="upgame_record">
+    <Key>
+      <PropertyRef Name="ugr_id" />
+    </Key>
+    <Property Name="ugr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="game_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="upnews_record">
+    <Key>
+      <PropertyRef Name="unr_id" />
+    </Key>
+    <Property Name="unr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="news_title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="user_pwd" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="user_email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="GameWebSiteModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="delgame_record" EntityType="Self.delgame_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="delnews_record" EntityType="Self.delnews_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="deluser_record" EntityType="Self.deluser_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="game" EntityType="Self.game" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="upgame_record" EntityType="Self.upgame_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="upnews_record" EntityType="Self.upnews_record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

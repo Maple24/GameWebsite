@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Static Billizard</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/liteaccordion.css">
+</head>
+
+<body>
+    <!---------导航--------------------------------->
+    <header>
+        <div class="">
+            <a href=@Url.Action("Index","Home")><img style="width: 140px; margin-top: 8px;  margin-left: 20px;" src="/Images/logo2.jpg" /></a>
+            <ul>
+                <li><a class="theme-hover" href="/User/Login"><b>登录</b></a></li>
+                <li><a class="theme-hover" href="/User/Register"><b>注册</b></a></li>
+            </ul>
+            <ul class="">
+                <li class="theme-hover"><a href="/News/News"><b>新闻中心</b></a></li>
+                <li class="theme-hover"><a href="/Games/Shooting"><b>射击游戏</b></a></li>
+                <li class="theme-hover"><a href="/Games/RPG"><b>角色扮演</b></a></li>
+                <li class="theme-hover"><a href="/Games/Sports"><b>体育游戏</b></a></li>
+                <li class="theme-hover">
+                    <form action="/Home/FindGame" method="post">
+                        <input type="text" name="FindGameName" /><button><b>搜索游戏</b></button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!------------注册-------------------------------->
+    <div class="register">
+        <Span class="register1">注册</Span>
+        <span class="register2">—— 拥有一个账户就等于拥有一整个游戏库</span>
+    </div>
+    <h2></h2>
+    <div>
+        @ViewBag.User_Register_State
+    </div>
+    <div class="register3">
+        <form action="/User/Register" method="post">
+            <div class="box1">
+                <label class="registerword">账号：</label>
+                <input class="" id="user_id" type="text" name="user_id" />
+            </div>
+            <div class="box1">
+                <label class="registerword">密码：</label>
+                <input class="" id="password" type="password" name="password" />
+            </div>
+            <div class="box1">
+                <label class="registerword">确认密码：</label>
+                <input class="" id="password1" type="password" name="password1" />
+            </div>
+            <div class="box1">
+                <label class="registerword">邮箱：</label>
+                <input class="" id="check" type="text" name="email" />
+            </div>
+
+            <div> <input class="btn2" type="submit" value="马上注册" id="register"></div>
+
+        </form>
+    </div>
+    <!-----底部------------------------------------>
+    <h2></h2>
+    <div class="centre">
+        <p>黑龙江大学·软件工程2班</p>
+        <p>杨垒-毕业设计</p>
+        <p>2017</p>
+    </div>
+</body>
+</html>

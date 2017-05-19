@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GameWebSiteModelStoreContainer" CdmEntityContainer="GameWebSiteEntities">
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="GameWebSiteModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="admin_pwd" ColumnName="admin_pwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comment">
+      <EntityTypeMapping TypeName="GameWebSiteModel.comment">
+        <MappingFragment StoreEntitySet="comment">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+          <ScalarProperty Name="comment_content" ColumnName="comment_content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="delgame_record">
+      <EntityTypeMapping TypeName="GameWebSiteModel.delgame_record">
+        <MappingFragment StoreEntitySet="delgame_record">
+          <ScalarProperty Name="dgr_id" ColumnName="dgr_id" />
+          <ScalarProperty Name="game_name" ColumnName="game_name" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="delnews_record">
+      <EntityTypeMapping TypeName="GameWebSiteModel.delnews_record">
+        <MappingFragment StoreEntitySet="delnews_record">
+          <ScalarProperty Name="dnr_id" ColumnName="dnr_id" />
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="deluser_record">
+      <EntityTypeMapping TypeName="GameWebSiteModel.deluser_record">
+        <MappingFragment StoreEntitySet="deluser_record">
+          <ScalarProperty Name="dur_id" ColumnName="dur_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="game">
+      <EntityTypeMapping TypeName="GameWebSiteModel.game">
+        <MappingFragment StoreEntitySet="game">
+          <ScalarProperty Name="game_name" ColumnName="game_name" />
+          <ScalarProperty Name="game_content" ColumnName="game_content" />
+          <ScalarProperty Name="game_type" ColumnName="game_type" />
+          <ScalarProperty Name="game_link" ColumnName="game_link" />
+          <ScalarProperty Name="game_pic" ColumnName="game_pic" />
+          <ScalarProperty Name="game_intro" ColumnName="game_intro" />
+          <ScalarProperty Name="game_pic_show" ColumnName="game_pic_show" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="news">
+      <EntityTypeMapping TypeName="GameWebSiteModel.news">
+        <MappingFragment StoreEntitySet="news">
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="news_content" ColumnName="news_content" />
+          <ScalarProperty Name="news_intro" ColumnName="news_intro" />
+          <ScalarProperty Name="news_pic" ColumnName="news_pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="upgame_record">
+      <EntityTypeMapping TypeName="GameWebSiteModel.upgame_record">
+        <MappingFragment StoreEntitySet="upgame_record">
+          <ScalarProperty Name="ugr_id" ColumnName="ugr_id" />
+          <ScalarProperty Name="game_name" ColumnName="game_name" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="upnews_record">
+      <EntityTypeMapping TypeName="GameWebSiteModel.upnews_record">
+        <MappingFragment StoreEntitySet="upnews_record">
+          <ScalarProperty Name="unr_id" ColumnName="unr_id" />
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="GameWebSiteModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GameWebSiteModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GameWebSiteModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GameWebSiteModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GameWebSiteModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GameWebSiteModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GameWebSiteModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GameWebSiteModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

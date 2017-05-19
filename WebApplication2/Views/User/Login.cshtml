@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Static Billizard</title>
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/liteaccordion.css" />
+    <script type='text/javascript'>
+        var code ; //在全局定义验证码
+
+        function createCode(){
+            code = "";
+            var codeLength = 4;//验证码的长度
+            var checkCode = document.getElementById("code");
+            var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+                'S','T','U','V','W','X','Y','Z');//随机数
+            for(var i = 0; i < codeLength; i++) {//循环操作
+                var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）
+                code += random[index];//根据索引取得随机数加到code上
+            }
+            checkCode.value = code;//把code值赋给验证码
+        }
+        //校验验证码
+        function validate(){
+            var inputCode = document.getElementById("check").value.toUpperCase();
+            
+           //取得输入的验证码并转化为大写
+            if(inputCode.length <= 0) { //若输入的验证码长度为0
+                document.getElementById("demo").innerHTML="请输入验证码！";
+
+                return false;
+            }else if(inputCode != code ) { //若输入的验证码与产生的验证码不一致时
+                document.getElementById("demo").innerHTML="验证码错误！";
+                createCode();//刷新验证码
+                document.getElementById("check").value = "";//清空文本框
+                return false;
+                
+            }else { //输入正确时
+                return true;
+                
+            }
+        }
+    </script>
+    <style type='text/css'>
+        #code {
+            font-family: Arial,宋体;
+            font-style: italic;
+            color: orange;
+            border: 0;
+            padding: 2px 3px;
+            letter-spacing: 3px;
+            font-weight: bolder;
+        }
+    </style>
+
+</head>
+<body onload='createCode()'>
+    <!---------导航--------------------------------->
+    <header>
+        <div class="">
+            <a href=@Url.Action("Index","Home")><img style="width: 140px; margin-top: 8px;  margin-left: 20px;" src="/Images/logo2.jpg" /></a>
+            <ul>
+                <li><a class="theme-hover" href="/User/Login"><b>登录</b></a></li>
+                <li><a class="theme-hover" href="/User/Register"><b>注册</b></a></li>
+            </ul>
+            <ul class="">
+                <li class="theme-hover"><a href="/News/News"><b>新闻中心</b></a></li>
+                <li class="theme-hover"><a href="/Games/Shooting"><b>射击游戏</b></a></li>
+                <li class="theme-hover"><a href="/Games/RPG"><b>角色扮演</b></a></li>
+                <li class="theme-hover"><a href="/Games/Sports"><b>体育游戏</b></a></li>
+                <li class="theme-hover">
+                    <form action="/Home/FindGame" method="post">
+                        <input type="text" name="FindGameName" /><button><b>搜索游戏</b></button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!------------登录-------------------------------->
+    <div class="register">
+        <Span class="register1">登录</Span>
+        <span class="register2">—— 拥有一个账户就等于拥有一整个游戏库</span>
+    </div>
+    <h2></h2>
+    <div class="register3">
+        <form action="/User/Login" method="post">
+            <div class="box1">
+                <label class="registerword">账号：</label>
+                <input class="" id="user_id" type="text" name="user_id" />
+            </div>
+            <div class="box1">
+                <label class="registerword">密码：</label>
+                <input class="" id="password" type="password" name="password" />
+            </div>
+            <div class="box1">
+                <label class="registerword">验证：</label>
+                <input class="" id="check" type="text" />
+                <div id="demo"></div>
+            </div>
+            <input type="button" id="code" onclick="createCode()" style="width: 100px;height: 40px;" title='点击更换验证码' />
+            <a href="/User/ForgetPwd" >忘记密码</a>
+            <div><input class="btn" onclick="return validate()" type="submit" value="马上登录"  ></div>
+        </form>
+    </div>
+   
+
+
+    <!-----底部------------------------------------>
+    <h2></h2>
+    <div class="centre">
+        <p>黑龙江大学·软件工程2班</p>
+        <p>杨垒-毕业设计</p>
+        <p>2017</p>
+    </div>
+</body>
+</html>

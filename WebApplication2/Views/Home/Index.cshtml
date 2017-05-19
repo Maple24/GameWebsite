@@ -1,0 +1,241 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Static Billizard</title>
+		<link rel="stylesheet" href="~/css/style.css" />
+		<link rel="stylesheet" href="~/css/liteaccordion.css">
+		<link href="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/styles/shCore.css" rel="stylesheet" />
+		<link href="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/styles/shThemeDefault.css" rel="stylesheet" />
+		<!--[if lt IE 9]>
+			<script>
+				document.createElement('figure');
+				document.createElement('figcaption');			
+			</script>
+		<![endif]-->
+
+
+	</head>
+
+	<body>
+	<!---------导航--------------------------------->
+        <header>
+            <div class="">
+                <a href=@Url.Action("Index","Home")><img style="width: 140px; margin-top: 8px;  margin-left: 20px;" src="/Images/logo2.jpg" /></a>
+                <ul>
+                    @if (Session["user_id"] == null)
+                    {
+                    <li><a class="theme-hover" href="/User/Login"><b>登录</b></a></li>
+                    <li><a class="theme-hover" href="/User/Register"><b>注册</b></a></li>
+                    }
+                    else
+                    {
+                        <li><p class="theme-hover" href="#"><b>@Session["user_id"]</b></p></li>
+                        <li><a class="theme-hover" href="/User/Exit"><b>退出</b></a></li>
+                    }
+                </ul>
+                <ul class="">
+   
+                    <li class="theme-hover"><a href="/News/News"><b>新闻中心</b></a></li>
+                    <li class="theme-hover"><a href="/Games/Shooting"><b>射击游戏</b></a></li>
+                    <li class="theme-hover"><a href="/Games/RPG"><b>角色扮演</b></a></li>
+                    <li class="theme-hover"><a href="/Games/Sports"> <b>体育游戏</b></a></li>
+
+                    <li class="theme-hover">
+                        <form action="/Home/FindGame" method="post">
+                            <input type="text" name="FindGameName" /><button><b>搜索游戏</b></button>
+                        </form>
+                    </li>
+                    
+                  
+               
+                </ul>
+            </div>
+        </header>
+
+		<!------------宣传图滑动窗口----------------------------->
+		<h1>Static Billizard - One of the most complete game website</h1>
+		<div id="one" class="accordion">
+		    <ol>
+				<li>
+				    <h2><span>Slide One</span></h2>
+				    <div>
+						<figure>
+							<img src="/Images/1.jpg" alt="image" />
+							<figcaption>I can haz big caek?</figcaption>
+						</figure>
+					</div>
+				</li>
+				<li>
+				    <h2><span>Slide Two</span></h2>
+				    <div>
+						<figure>
+							<img src="/Images/3.jpg" alt="image" />
+							<figcaption>Whoops.</figcaption>
+						</figure>
+					</div>
+				</li>
+				<li>
+				    <h2><span>Slide Three</span></h2>
+				    <div>
+						<figure>
+							<img src="/Images/2a.jpg" alt="image" />
+							<figcaption>Some caption text goes in here...</figcaption>
+						</figure>
+					</div>
+				</li>
+				<li>
+				    <h2><span>Slide Four</span></h2>
+				    <div>
+						<figure>
+							<img src="/Images/5.jpg" width="768" alt="image" />
+							<figcaption>Pew pew pew!</figcaption>
+						</figure>
+					</div>
+				</li>
+				<li>
+				    <h2><span>Slide Five</span></h2>
+				    <div>
+						<figure>
+							<img src="/Images/2.jpg" alt="image" />
+							<figcaption>More caption text here!</figcaption>
+						</figure>
+					</div>
+				</li>
+		    </ol>
+		</div>
+<!-----新闻中心------------------------------------>
+		<h2>新闻中心</h2>
+        @if (ViewData["Home_News"] == null)
+        {
+            <div class="news">
+                <div></div>
+            </div>
+        }
+        else
+        {
+            foreach (var news in ViewData["Home_News"] as List<news>)
+            {
+                <div class="news">
+                    
+                        <div><a href="/News/NewsDisplay?id=@news.news_title">   @news.news_title</a></div>
+
+                        </div>
+            }
+            
+        }
+	<!-----热门游戏------------------------------------>
+		<h2>热门游戏</h2>
+        @if (ViewData["Home_Games"] == null)
+        {
+            <div class="cheshi1 ">
+            </div>
+            <div class="wrapper ">
+             <div class="centre"></div>
+            </div>
+        }
+        else
+        {
+
+	            <div class="cheshi1 ">
+                     @foreach (var game in ViewData["Home_Games"] as List<game>)
+       {
+		        <a href="/Games/GameDisplay?id=@game.game_name"><img src=@game.game_pic /></a>
+                    }
+	            </div>
+                <div class="wrapper ">
+                    @foreach (var game in ViewData["Home_Games"] as List<game>)
+                    {
+
+                        <div class="centre"><a href="/Games/GameDisplay?id=@game.game_name">@game.game_name</a></div>}
+                </div>
+        }
+ 
+        
+	<!-----问答FQA------------------------------------>
+
+		<h2>FAQ</h2>
+		<dl>
+			<dt>Q. Why is this plugin called 'liteAccordion'?</dt>
+			<dd>A. It is called liteAccordion because the raw JavaScript source only weighs a (heavily commented!) 4.5kb, and the themes don't use any background images. If you minify and gzip the JS, you can get the file size down to ~1.2kb!</dd>
+			<dt>Q. What can I use it for?</dt>
+			<dd>A. Anything you like! Text, images, video - anything you can put in a div, you can put in a slide.</dd>
+			<dt>Q. But my page isn't 960px wide...</dt>
+			<dd>A. Not a problem. The plugin has a range of options, and I've tried to use relative measurements in the css so that the styles scale.</dd>
+			<dt>Q. What themes are available?</dt>
+			<dd>A. There are currently two themes available, 'basic' and 'dark', though I plan to add a light theme and a stitch theme based on Orman Clark's <a href="http://www.premiumpixels.com/stitched-fabric-accordion/">stitch</a> theme for SlideDeck in the very near future.  If these themes aren't suitable, you can always customise the css :)</dd>
+			<dt>Q. Does it work in...</dt>
+			<dd>A. It's been tested on the latest versions of Firefox, Chrome, Safari and Opera on both OSX and W7.  It has also been tested on IE7 &amp; IE8 on W7, and IE8 on WinXP.</dd>
+			<dt>Q. Sounds good! Can I use it for commercial projects?</dt>
+			<dd>A. liteAccordion is released under the MIT license, so it's free to use for commercial and personal projects.</dd>
+		</dl>
+	<!-----关于我们----------------------------------->
+		<h2>友情链接</h2>
+        <div class="">
+            <span></span>
+            <a href="http://www.gamersky.com/pcgame/" target="_blank">单机游戏</a>
+            <a href="http://www.duowan.com/" target="_blank">多玩游戏</a>
+            <a href="http://games.qq.com/" target="_blank">腾讯游戏</a>
+            <a href="http://www.ali213.net/" target="_blank">游侠网</a>
+            <a href="http://www.265g.com/" target="_blank">265G</a>
+            <a href="http://www.tgbus.com/" target="_blank">电玩巴士</a>
+            <a href="http://www.yxdown.com/" target="_blank">游迅网</a>
+            <a href="http://www.sgamer.com/" target="_blank">超级玩家</a>
+            <a href="http://game.mop.com/" target="_blank">猫扑游戏</a>
+            <a href="http://www.52pk.com/" target="_blank">52PK游戏网</a>
+            <a href="http://www.51wan.com/" target="_blank">51wan网页游戏</a>
+            <a href="http://www.manmankan.com/" target="_blank">漫漫看</a>
+            <a href="http://www.37.com/" target="_blank">37游戏</a>
+            <a href="http://game.zol.com.cn/" target="_blank">中关村游戏频道</a>
+            <a href="http://www.07073.com/" target="_blank">07073网页游戏</a>
+            <a href="http://www.doyo.cn/" target="_blank">逗游网</a>
+            <a href="http://www.youzu.com/" target="_blank">游族网络</a>
+            <a href="http://www.gamedog.cn/" target="_blank">游戏狗</a>
+            <a href="http://www.18183.com/ " target="_blank">18183手游网</a>
+            <a href="http://www.pc6.com/" target="_blank">PC6官方下载</a>
+            <a href="http://www.91danji.com/" target="_blank">91单机游戏</a>
+            <a href="http://www.5068.com/" target="_blank">5068儿童网</a>
+            <a href="http://iask.sina.com.cn/" target="_blank">新浪爱问</a>
+            <a href="http://dl.pconline.com.cn/" target="_blank">太平洋下载中心</a>
+            <a href="http://www.tanwan.com" target="_blank">贪玩游戏</a>
+            <a href="http://www.178.com/" target="_blank">178游戏网</a>
+            <a href="http://www.4399.cn/" target="_blank">4399手机游戏网</a>
+            <a href="http://www.zhanqi.tv/" target="_blank">战旗TV游戏直播</a>
+            <a href="http://play.163.com/" target="_blank">爱玩网</a>
+        </div>
+	<!-----底部------------------------------------>
+		<h2></h2>
+		<div class="centre">
+		<p>黑龙江大学·软件工程2班</p>
+		<p>杨垒-毕业设计</p>
+		<p>2017</p></div>
+	<!-----js------------------------------------>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+		<script src="js/liteaccordion.jquery.js"></script>
+		<script>
+			// liteAccordion demos
+			$('#one').liteAccordion({
+					onActivate : function() {
+						this.find('figcaption').fadeOut();
+					},
+					slideCallback : function() {	
+						this.find('figcaption').fadeIn();
+					},
+					autoPlay : true,
+					pauseOnHover : true,
+					theme : 'dark',
+					rounded : true,
+					enumerateSlides : true					
+			}).find('figcaption:first').show();
+			$('#two').liteAccordion();
+			$('#three').liteAccordion({ theme : 'dark', containerWidth : 600, containerHeight : 200, slideSpeed : 600, firstSlide : 2 });
+		</script>
+
+		<!-- Syntax Highlighter -->
+		<script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shCore.js"></script>
+		<script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushXml.js"></script>
+		<script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushJScript.js"></script>
+		<!--<script>SyntaxHighlighter.all();</script>-->
+		<!-- end Syntax Highlighter -->
+	</body>
+</html>

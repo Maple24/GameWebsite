@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Static Billizard</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/liteaccordion.css">
+</head>
+
+<body>
+    <!---------导航--------------------------------->
+    <header>
+        <div class="">
+            <a href=@Url.Action("Index","Home")><img style="width: 140px; margin-top: 8px;  margin-left: 20px;" src="/Images/logo2.jpg" /></a>
+            <ul>
+                @if (Session["user_id"] == null)
+                {
+                    <li><a class="theme-hover" href="/User/Login"><b>登录</b></a></li>
+                    <li><a class="theme-hover" href="/User/Register"><b>注册</b></a></li>
+                }
+                else
+                {
+                    <li><a class="theme-hover" href="#"><b>@Session["user_id"]</b></a></li>
+                        <li><a class="theme-hover" href="/User/Exit"><b>退出</b></a></li>
+                }
+            </ul>
+            <ul class="">
+                <li class="theme-hover"><a href="/News/News"><b>新闻中心</b></a></li>
+                <li class="theme-hover"><a href="/Games/Shooting"><b>射击游戏</b></a></li>
+                <li class="theme-hover"><a href="/Games/RPG"><b>角色扮演</b></a></li>
+                <li class="theme-hover"><a href="/Games/Sports"><b>体育游戏</b></a></li>
+                <li class="theme-hover">
+                    <form action="/Home/FindGame" method="post">
+                        <input type="text" name="FindGameName" /><button><b>搜索游戏</b></button>
+                    </form>
+                </li>
+                
+            </ul>
+        </div>
+    </header>
+
+    <!-------------------------------------------------->
+    <div class="register">
+        <Span class="register1">体育游戏</Span>
+        <span class="register2">—— 全网的最全的游戏库，尽在静视游戏</span>
+    </div>
+    <h2></h2>
+    <div>
+
+        <div>
+            <ul class="pictxt contentpaging" data-nodeid="11007" data-isnodeid="true">
+                @if (ViewBag.Game_Search_State == false)
+                {
+                    <li>
+                        <div>
+                            <span>
+                                暂无游戏记录
+                            </span>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    foreach (var game in ViewData["GameList"] as List<game>)
+                    {
+                        <li>
+                            <div class="tit"><a class="tt" href=@Url.Action("GameDisplay","Games",new { id=game.game_name}) target="_blank">@game.game_name</a></div>
+
+                            <div class="img"><a href=@Url.Action("GameDisplay","Games",new { id=game.game_name}) target="_blank"><img src=@game.game_pic width="200" height="110" class="pe_u_thumb" border="0"></a></div>
+
+                            <div class="con">
+                                <div class="txt">
+                                    @game.game_intro
+
+                                </div>
+                                <div class="tem">
+                                    <div class="pls cy_comment" data-sid="898802"></div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+
+    </div>
+    <h2></h2>
+    <div class="centre">
+        <p>黑龙江大学·软件工程2班</p>
+        <p>杨垒-毕业设计</p>
+        <p>2017</p>
+    </div>
+</body>
+</html>
