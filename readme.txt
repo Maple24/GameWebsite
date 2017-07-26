@@ -1,2 +1,2 @@
 Git is a extremely powerful tool
-Git is my favorate one
+Git is my favorate version controller
