@@ -1,2 +1,1 @@
-Git is a extremely powerful tool
-Git is my favorate version controller
+This my zone to pratcise my go
