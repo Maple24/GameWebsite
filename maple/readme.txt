@@ -1,1 +1,1 @@
-This my zone to pratcise my go
+This my zone to pratcise go
