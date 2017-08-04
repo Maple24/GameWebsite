@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Static Billizard</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/liteaccordion.css">
+</head>
+
+<body>
+    <!---------导航--------------------------------->
+    <header>
+        <div class="">
+            <a href=@Url.Action("Index","Home")><img style="width: 140px; margin-top: 8px;  margin-left: 20px;" src="/Images/logo2.jpg" /></a>
+            <ul>
+                @if (Session["user_id"] == null)
+                {
+                    <li><a class="theme-hover" href="/User/Login"><b>登录</b></a></li>
+                    <li><a class="theme-hover" href="/User/Register"><b>注册</b></a></li>
+                }
+                else
+                {
+                    <li><a class="theme-hover" href="#"><b>@Session["user_id"]</b></a></li>
+                        <li><a class="theme-hover" href="/User/Exit"><b>退出</b></a></li>
+                }
+            </ul>
+            <ul class="">
+                <li class="theme-hover"><a href="/News/News"><b>新闻中心</b></a></li>
+                <li class="theme-hover"><a href="/Games/Shooting"><b>射击游戏</b></a></li>
+                <li class="theme-hover"><a href="/Games/RPG"><b>角色扮演</b></a></li>
+                <li class="theme-hover"><a href="/Games/Sports"><b>体育游戏</b></a></li>
+                <li class="theme-hover">
+                    <form action="/Home/FindGame" method="post">
+                        <input type="text" name="FindGameName" /><button><b>搜索游戏</b></button>
+                    </form>
+                </li>
+               
+            </ul>
+        </div>
+    </header>
+    <div class="register">
+        <Span class="register1">新闻中心</Span>
+        <span class="register2">—— 最新资讯，最新报道，尽在静视游戏</span>
+    </div>
+    <h2></h2>
+    <!------新闻内容------------>
+    <div style="width:800px; margin-left:100px;">
+        @{
+            news current_news = (news)ViewData["NewsDisplay"];
+        }
+        <div class="centre" style="font-size:30px; margin-top:50px;" id="title">@current_news.news_title</div>
+        <div class="centre" style="margin-top:40px;" id="img"><img width="600" height="300" src=@current_news.news_pic /></div>
+        <div style="margin-top:40px;" id="new_content">@current_news.news_content</div>
+        @{
+            if (ViewData["Commentlist"] == null)
+            {
+
+            }
+            else
+            {
+                foreach (var cm in ViewData["Commentlist"] as List<comment>)
+                {
+                    <div style="margin-top:40px;" id="name_time">
+                     用户ID:@cm.user_id      评论时间:@cm.date
+                    </div>
+                    <div style="border-bottom:1px dashed"></div>
+                    <div id="content">@cm.comment_content</div>
+                }
+            }
+        }
+        <div style="margin-top:40px;"  class="centre">
+            <form action="/User/Comment?id=@current_news.news_title" method="post">
+                <textarea style="width:500px;height:300px;text-align:left" name="comment_content"></textarea>
+                <div></div>
+                <input  type="submit" class="btn2" />
+            </form>
+        </div>
+    </div>
+    <!------底部------------>
+    <h2></h2>
+    <div class="centre">
+        <p>黑龙江大学·软件工程2班</p>
+        <p>杨垒-毕业设计</p>
+        <p>2017</p>
+    </div>
+</body>
+</html>
+

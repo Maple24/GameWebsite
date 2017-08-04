@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Static Billizard</title>
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/liteaccordion.css" />
+    <script>
+        onload = function () {
+            var container1 = document.getElementById("vCode1");
+            var code1 = new vCode(container1);
+            document.getElementById("btn1").addEventListener("click", function () {
+                alert(code1.verify(document.getElementById("code1").value));
+            }, false);
+        };
+    </script>
+    <script src="~/js/check.js"></script>
+</head>
+<body>
+    <!---------导航--------------------------------->
+    <header>
+        <div class="">
+            <a href=@Url.Action("Index","Home")><img style="width: 140px; margin-top: 8px;  margin-left: 20px;" src="/Images/logo2.jpg" /></a>
+            <ul>
+                <li><a class="theme-hover" href="/User/Login"><b>登录</b></a></li>
+                <li><a class="theme-hover" href="/User/Register"><b>注册</b></a></li>
+            </ul>
+            <ul class="">
+                <li class="theme-hover"><a href="/News/News"><b>新闻中心</b></a></li>
+                <li class="theme-hover"><a href="/Games/Shooting"><b>射击游戏</b></a></li>
+                <li class="theme-hover"><a href="/Games/RPG"><b>角色扮演</b></a></li>
+                <li class="theme-hover"><a href="/Games/Sports"><b>体育游戏</b></a></li>
+                <li class="theme-hover">
+                    <form action="/Home/FindGame" method="post">
+                        <input type="text" name="FindGameName" /><button><b>搜索游戏</b></button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!------------忘记密码-------------------------------->
+    <div class="register">
+        <Span class="register1">忘记密码</Span>
+        <span class="register2">—— 拥有一个账户就等于拥有一整个游戏库</span>
+    </div>
+    <h2></h2>
+    <div class="register3">
+        <form action="/User/ForgetPwd" method="post">
+            <div class="box1">
+                <label class="registerword">账号：</label>
+                <input class="" id="user_id" type="text" name="user_id" />
+            </div>
+            <div class="box1">
+                <label class="registerword">邮箱：</label>
+                <input class="" id="user_email" type="text" name="user_email" />
+            </div>
+            <div class="box1">
+                <label class="registerword">新密码：</label>
+                <input class="" id="new_password" type="password" name="new_password" />
+
+            </div>
+            <div> <input class="btn" type="submit" value="修改" id="btn1"></div>
+        </form>
+    </div>
+
+
+    <!-----底部------------------------------------>
+    <h2></h2>
+    <div class="centre">
+        <p>黑龙江大学·软件工程2班</p>
+        <p>杨垒-毕业设计</p>
+        <p>2017</p>
+    </div>
+</body>
+</html>
+

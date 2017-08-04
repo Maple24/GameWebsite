@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameWebSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="admin_pwd" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="delgame_record" Relationship="GameWebSiteModel.admindelgame_record" FromRole="admin" ToRole="delgame_record" />
+    <NavigationProperty Name="upgame_record" Relationship="GameWebSiteModel.adminupgame_record" FromRole="admin" ToRole="upgame_record" />
+    <NavigationProperty Name="delnews_record" Relationship="GameWebSiteModel.admindelnews_record" FromRole="admin" ToRole="delnews_record" />
+    <NavigationProperty Name="upnews_record" Relationship="GameWebSiteModel.adminupnews_record" FromRole="admin" ToRole="upnews_record" />
+    <NavigationProperty Name="deluser_record" Relationship="GameWebSiteModel.admindeluser_record" FromRole="admin" ToRole="deluser_record" />
+  </EntityType>
+  <EntityType Name="comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="comment_id" Type="Int32" Nullable="false" />
+    <Property Name="comment_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="GameWebSiteModel.usercomment" FromRole="comment" ToRole="user" />
+    <Property Name="user_id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="news" Relationship="GameWebSiteModel.newscomment" FromRole="comment" ToRole="news" />
+    <Property Name="news_title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="delgame_record">
+    <Key>
+      <PropertyRef Name="dgr_id" />
+    </Key>
+    <Property Name="dgr_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="admin" Relationship="GameWebSiteModel.admindelgame_record" FromRole="delgame_record" ToRole="admin" />
+    <Property Name="admin_id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="game" Relationship="GameWebSiteModel.gamedelgame_record" FromRole="delgame_record" ToRole="game" />
+  </EntityType>
+  <EntityType Name="delnews_record">
+    <Key>
+      <PropertyRef Name="dnr_id" />
+    </Key>
+    <Property Name="dnr_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="admin" Relationship="GameWebSiteModel.admindelnews_record" FromRole="delnews_record" ToRole="admin" />
+    <Property Name="admin_id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="news" Relationship="GameWebSiteModel.newsdelnews_record" FromRole="delnews_record" ToRole="news" />
+  </EntityType>
+  <EntityType Name="deluser_record">
+    <Key>
+      <PropertyRef Name="dur_id" />
+    </Key>
+    <Property Name="dur_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="user" Relationship="GameWebSiteModel.userdeluser_record" FromRole="deluser_record" ToRole="user" />
+    <NavigationProperty Name="admin" Relationship="GameWebSiteModel.admindeluser_record" FromRole="deluser_record" ToRole="admin" />
+    <Property Name="admin_id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="game">
+    <Key>
+      <PropertyRef Name="game_name" />
+    </Key>
+    <Property Name="game_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="game_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="game_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="game_pic" Type="String" Nullable="false" />
+    <Property Name="game_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="upgame_record" Relationship="GameWebSiteModel.gameupgame_record" FromRole="game" ToRole="upgame_record" />
+    <NavigationProperty Name="delgame_record" Relationship="GameWebSiteModel.gamedelgame_record" FromRole="game" ToRole="delgame_record" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="news_title" />
+    </Key>
+    <Property Name="news_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="news_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="news_pic" Type="String" Nullable="false" />
+    <NavigationProperty Name="comment" Relationship="GameWebSiteModel.newscomment" FromRole="news" ToRole="comment" />
+    <NavigationProperty Name="delnews_record" Relationship="GameWebSiteModel.newsdelnews_record" FromRole="news" ToRole="delnews_record" />
+    <NavigationProperty Name="upnews_record" Relationship="GameWebSiteModel.newsupnews_record" FromRole="news" ToRole="upnews_record" />
+    <Property Name="news_intro" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="upgame_record">
+    <Key>
+      <PropertyRef Name="ugr_id" />
+    </Key>
+    <Property Name="ugr_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="admin" Relationship="GameWebSiteModel.adminupgame_record" FromRole="upgame_record" ToRole="admin" />
+    <Property Name="admin_id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="game" Relationship="GameWebSiteModel.gameupgame_record" FromRole="upgame_record" ToRole="game" />
+  </EntityType>
+  <EntityType Name="upnews_record">
+    <Key>
+      <PropertyRef Name="unr_id" />
+    </Key>
+    <Property Name="unr_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="admin" Relationship="GameWebSiteModel.adminupnews_record" FromRole="upnews_record" ToRole="admin" />
+    <Property Name="admin_id" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="news" Relationship="GameWebSiteModel.newsupnews_record" FromRole="upnews_record" ToRole="news" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_pwd" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="comment" Relationship="GameWebSiteModel.usercomment" FromRole="user" ToRole="comment" />
+    <NavigationProperty Name="deluser_record" Relationship="GameWebSiteModel.userdeluser_record" FromRole="user" ToRole="deluser_record" />
+  </EntityType>
+  <EntityContainer Name="GameWebSiteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="Self.admin" />
+    <EntitySet Name="comment" EntityType="Self.comment" />
+    <EntitySet Name="delgame_record" EntityType="Self.delgame_record" />
+    <EntitySet Name="delnews_record" EntityType="Self.delnews_record" />
+    <EntitySet Name="deluser_record" EntityType="Self.deluser_record" />
+    <EntitySet Name="game" EntityType="Self.game" />
+    <EntitySet Name="news" EntityType="Self.news" />
+    <EntitySet Name="upgame_record" EntityType="Self.upgame_record" />
+    <EntitySet Name="upnews_record" EntityType="Self.upnews_record" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="usercomment" Association="GameWebSiteModel.usercomment">
+      <End Role="user" EntitySet="user" />
+      <End Role="comment" EntitySet="comment" />
+    </AssociationSet>
+    <AssociationSet Name="newscomment" Association="GameWebSiteModel.newscomment">
+      <End Role="news" EntitySet="news" />
+      <End Role="comment" EntitySet="comment" />
+    </AssociationSet>
+    <AssociationSet Name="admindelgame_record" Association="GameWebSiteModel.admindelgame_record">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="delgame_record" EntitySet="delgame_record" />
+    </AssociationSet>
+    <AssociationSet Name="adminupgame_record" Association="GameWebSiteModel.adminupgame_record">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="upgame_record" EntitySet="upgame_record" />
+    </AssociationSet>
+    <AssociationSet Name="gameupgame_record" Association="GameWebSiteModel.gameupgame_record">
+      <End Role="game" EntitySet="game" />
+      <End Role="upgame_record" EntitySet="upgame_record" />
+    </AssociationSet>
+    <AssociationSet Name="gamedelgame_record" Association="GameWebSiteModel.gamedelgame_record">
+      <End Role="game" EntitySet="game" />
+      <End Role="delgame_record" EntitySet="delgame_record" />
+    </AssociationSet>
+    <AssociationSet Name="admindelnews_record" Association="GameWebSiteModel.admindelnews_record">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="delnews_record" EntitySet="delnews_record" />
+    </AssociationSet>
+    <AssociationSet Name="newsdelnews_record" Association="GameWebSiteModel.newsdelnews_record">
+      <End Role="news" EntitySet="news" />
+      <End Role="delnews_record" EntitySet="delnews_record" />
+    </AssociationSet>
+    <AssociationSet Name="adminupnews_record" Association="GameWebSiteModel.adminupnews_record">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="upnews_record" EntitySet="upnews_record" />
+    </AssociationSet>
+    <AssociationSet Name="newsupnews_record" Association="GameWebSiteModel.newsupnews_record">
+      <End Role="news" EntitySet="news" />
+      <End Role="upnews_record" EntitySet="upnews_record" />
+    </AssociationSet>
+    <AssociationSet Name="userdeluser_record" Association="GameWebSiteModel.userdeluser_record">
+      <End Role="user" EntitySet="user" />
+      <End Role="deluser_record" EntitySet="deluser_record" />
+    </AssociationSet>
+    <AssociationSet Name="admindeluser_record" Association="GameWebSiteModel.admindeluser_record">
+      <End Role="admin" EntitySet="admin" />
+      <End Role="deluser_record" EntitySet="deluser_record" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="usercomment">
+    <End Type="GameWebSiteModel.user" Role="user" Multiplicity="1" />
+    <End Type="GameWebSiteModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="newscomment">
+    <End Type="GameWebSiteModel.news" Role="news" Multiplicity="1" />
+    <End Type="GameWebSiteModel.comment" Role="comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="news">
+        <PropertyRef Name="news_title" />
+      </Principal>
+      <Dependent Role="comment">
+        <PropertyRef Name="news_title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="admindelgame_record">
+    <End Type="GameWebSiteModel.admin" Role="admin" Multiplicity="1" />
+    <End Type="GameWebSiteModel.delgame_record" Role="delgame_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="admin_id" />
+      </Principal>
+      <Dependent Role="delgame_record">
+        <PropertyRef Name="admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="adminupgame_record">
+    <End Type="GameWebSiteModel.admin" Role="admin" Multiplicity="1" />
+    <End Type="GameWebSiteModel.upgame_record" Role="upgame_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="admin_id" />
+      </Principal>
+      <Dependent Role="upgame_record">
+        <PropertyRef Name="admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="gameupgame_record">
+    <End Type="GameWebSiteModel.game" Role="game" Multiplicity="1" />
+    <End Type="GameWebSiteModel.upgame_record" Role="upgame_record" Multiplicity="1" />
+  </Association>
+  <Association Name="gamedelgame_record">
+    <End Type="GameWebSiteModel.game" Role="game" Multiplicity="1" />
+    <End Type="GameWebSiteModel.delgame_record" Role="delgame_record" Multiplicity="0..1" />
+  </Association>
+  <Association Name="admindelnews_record">
+    <End Type="GameWebSiteModel.admin" Role="admin" Multiplicity="1" />
+    <End Type="GameWebSiteModel.delnews_record" Role="delnews_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="admin_id" />
+      </Principal>
+      <Dependent Role="delnews_record">
+        <PropertyRef Name="admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="newsdelnews_record">
+    <End Type="GameWebSiteModel.news" Role="news" Multiplicity="1" />
+    <End Type="GameWebSiteModel.delnews_record" Role="delnews_record" Multiplicity="0..1" />
+  </Association>
+  <Association Name="adminupnews_record">
+    <End Type="GameWebSiteModel.admin" Role="admin" Multiplicity="1" />
+    <End Type="GameWebSiteModel.upnews_record" Role="upnews_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="admin_id" />
+      </Principal>
+      <Dependent Role="upnews_record">
+        <PropertyRef Name="admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="newsupnews_record">
+    <End Type="GameWebSiteModel.news" Role="news" Multiplicity="1" />
+    <End Type="GameWebSiteModel.upnews_record" Role="upnews_record" Multiplicity="1" />
+  </Association>
+  <Association Name="userdeluser_record">
+    <End Type="GameWebSiteModel.user" Role="user" Multiplicity="1" />
+    <End Type="GameWebSiteModel.deluser_record" Role="deluser_record" Multiplicity="0..1" />
+  </Association>
+  <Association Name="admindeluser_record">
+    <End Type="GameWebSiteModel.admin" Role="admin" Multiplicity="1" />
+    <End Type="GameWebSiteModel.deluser_record" Role="deluser_record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin">
+        <PropertyRef Name="admin_id" />
+      </Principal>
+      <Dependent Role="deluser_record">
+        <PropertyRef Name="admin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
